@@ -29,11 +29,11 @@ const getAssignment = async (req, res) => {
 
 //create new assignment
 const createAssignment = async (req, res) => {
-    const { title, description, dueDate, courseName } = req.body;
+    const { title, description, dueDate, courseName, estimatedTime } = req.body;
 
     // add assignment to db
     try {
-        const assignment = await Assignment.create({ title, description, dueDate, courseName });
+        const assignment = await Assignment.create({ title, description, dueDate, courseName, estimatedTime });
         res.status(200).json(assignment);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -70,6 +70,10 @@ const updateAssignment = async (req, res) => {
 
     // update assignment
     const updatedAssignment = await Assignment.findByIdAndUpdate(id, req.body);
+    // const assignment = await Assignment.findOneAndUpdate({ _id: id }, {
+    //     ...req.body 
+    // }, { new: true }); // Ensure {new: true} to return the updated document
+
 
     if (!updatedAssignment) {
         return res.status(404).json({ error: 'Assignment not found' });

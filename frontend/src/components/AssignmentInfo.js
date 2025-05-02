@@ -25,6 +25,7 @@ const AssignmentInfo = ({ assignment, onEdit }) => {
             <p><strong>Description: </strong>{assignment.description}</p>
             <p><strong>Due Date: </strong> {new Date(assignment.dueDate).toLocaleDateString()}</p>
             <p><strong>Course Name: </strong> {assignment.courseName}</p>
+            <p><strong>Estimated Time: </strong> {assignment.estimatedTime} hours</p>
             <span onClick={remove}>delete</span>
             <span class="edit" onClick={edit}>edit</span>
         </div>

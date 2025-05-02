@@ -12,12 +12,17 @@ const assignmentSchema = new Schema({
     },
     dueDate: {
         type: Date,
-        required: true
+        required: true,
+        index: true
     },
     courseName: {
         type: String,
         required: true
-    }
+    },
+    estimatedTime: {
+        type: Number,
+        required: true
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Assignment', assignmentSchema);
