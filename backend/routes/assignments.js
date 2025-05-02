@@ -7,10 +7,14 @@ const {
     getAssignment,
     createAssignment,
     deleteAssignment,
-    updateAssignment
+    updateAssignment,
+    getCourseNames
 } = require('../controllers/assignmentController');
 
 const Assignment = require('../models/assignmentModel');
+
+// GET all course names
+router.get('/course-names', getCourseNames);
 
 // GET all assignments
 router.get('/', getAssignments);

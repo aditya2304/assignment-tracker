@@ -16,8 +16,13 @@ export const assignmentReducer = (state, action) => {
                 assignments: state.assignments.filter((a) => a._id !== action.payload._id)
             }
         case 'UPDATE_ASSIGNMENT':
+            // First remove the old assignment, then add the updated one
+            const filteredAssignments = state.assignments.filter(
+                a => a._id !== action.payload._id
+            );
+            
             return {
-                assignments: [action.payload, ...state.assignments]
+                assignments: [action.payload, ...filteredAssignments]
             }
         default:
             return state

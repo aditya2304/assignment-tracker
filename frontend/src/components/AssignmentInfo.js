@@ -19,11 +19,18 @@ const AssignmentInfo = ({ assignment, onEdit }) => {
         onEdit(); // Trigger the edit mode in the Home component
     };
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        // Add timezone offset to prevent date shift
+        const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        return utcDate.toLocaleDateString();
+    };
+
     return (
         <div className="assignment-info">
             <h4>{assignment.title}</h4>
             <p><strong>Description: </strong>{assignment.description}</p>
-            <p><strong>Due Date: </strong> {new Date(assignment.dueDate).toLocaleDateString()}</p>
+            <p><strong>Due Date: </strong> {formatDate(assignment.dueDate)}</p>
             <p><strong>Course Name: </strong> {assignment.courseName}</p>
             <p><strong>Estimated Time: </strong> {assignment.estimatedTime} hours</p>
             <span onClick={remove}>delete</span>

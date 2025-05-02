@@ -114,3 +114,31 @@ form button[type="button"] {
   background: #777;
   margin-left: 10px;
 }
+
+/* Filter dropdown styling */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.course-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.course-filter select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-family: "Castoro";
+  cursor: pointer;
+}
+
+.course-filter label {
+  font-weight: bold;
+  color: #333;
+}

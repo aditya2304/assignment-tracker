@@ -3,9 +3,25 @@ const Assignment = require('../models/assignmentModel');
 
 //get all assignments
 const getAssignments = async (req, res) => {
-    const assignments = await Assignment.find({}).sort({ createdAt: -1 });
+    // Check for course filter
+    const { courseName } = req.query;
+    
+    // Apply filter if courseName is provided
+    const filter = courseName ? { courseName } : {};
+    
+    const assignments = await Assignment.find(filter).sort({ dueDate: 1 });
 
     res.status(200).json(assignments);
+};
+
+//get all unique course names
+const getCourseNames = async (req, res) => {
+    try {
+        const courseNames = await Assignment.distinct('courseName');
+        res.status(200).json(courseNames);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 //get a single assignment
@@ -68,12 +84,12 @@ const updateAssignment = async (req, res) => {
         return res.status(404).json({ error: 'Assignment not found' });
     }
 
-    // update assignment
-    const updatedAssignment = await Assignment.findByIdAndUpdate(id, req.body);
-    // const assignment = await Assignment.findOneAndUpdate({ _id: id }, {
-    //     ...req.body 
-    // }, { new: true }); // Ensure {new: true} to return the updated document
-
+    // Update the findByIdAndUpdate to return the updated document
+    const updatedAssignment = await Assignment.findByIdAndUpdate(
+        id, 
+        req.body, 
+        { new: true } // This tells MongoDB to return the updated document
+    );
 
     if (!updatedAssignment) {
         return res.status(404).json({ error: 'Assignment not found' });
@@ -87,5 +103,6 @@ module.exports = {
     getAssignment,
     createAssignment,
     deleteAssignment,
-    updateAssignment
+    updateAssignment,
+    getCourseNames
 };

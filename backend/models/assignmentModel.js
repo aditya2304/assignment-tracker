@@ -12,12 +12,12 @@ const assignmentSchema = new Schema({
     },
     dueDate: {
         type: Date,
-        required: true,
-        index: true
+        required: true
     },
     courseName: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     estimatedTime: {
         type: Number,

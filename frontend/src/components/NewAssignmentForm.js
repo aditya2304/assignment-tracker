@@ -13,8 +13,10 @@ const NewAssignmentForm = () => {
         const json = await response.json();
         if (response.ok) {
             dispatch({ type: 'CREATE_ASSIGNMENT', payload: json });
+            return true; // Return true to indicate successful submission
         } else {
             // Handle error if needed
+            return false; // Return false to indicate failed submission
         }
     };
 
