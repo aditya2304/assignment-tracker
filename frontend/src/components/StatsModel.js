@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/StatsModal.css';
 
-const StatsModal = ({ stats, onClose, courseName }) => {
+const StatsModel = ({ stats, onClose, courseName }) => {
     return (
         <div className="stats-modal-backdrop">
             <div className="stats-modal">
@@ -36,4 +36,4 @@ const StatsModal = ({ stats, onClose, courseName }) => {
     );
 };
 
-export default StatsModal;
+export default StatsModel;

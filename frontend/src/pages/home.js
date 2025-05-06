@@ -65,12 +65,12 @@ const Home = () => {
         setSelectedCourse(e.target.value);
     };
 
-    // Handle showing the stats modal
+    // Handle showing the stats model
     const handleShowStats = () => {
         setShowStats(true);
     };
 
-    // Handle closing the stats modal
+    // Handle closing the stats model
     const handleCloseStats = () => {
         setShowStats(false);
     };
@@ -101,7 +101,7 @@ const Home = () => {
                     </div>
                 </div>
                 
-                {/* Stats Modal */}
+                {/* Stats Model */}
                 {showStats && (
                     <StatsModel 
                         stats={calculateStats()} 
@@ -120,7 +120,7 @@ const Home = () => {
                     ))}
             </div>
             {editingAssignment ? (
-                <EditAssignmentForm
+                <EditAssignmentForm 
                     assignment={editingAssignment}
                     onCancel={() => setEditingAssignment(null)}
                 />

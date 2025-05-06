@@ -16,13 +16,18 @@ const assignmentSchema = new Schema({
     },
     courseName: {
         type: String,
-        required: true,
-        index: true
+        required: true
     },
     estimatedTime: {
         type: Number,
         required: true
     },
 }, { timestamps: true });
+
+// Create a compound index
+assignmentSchema.index({ courseName: 1, dueDate: 1 });
+
+// Create a single field indexes
+assignmentSchema.index({ courseName: 1 });
 
 module.exports = mongoose.model('Assignment', assignmentSchema);

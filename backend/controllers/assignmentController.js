@@ -5,10 +5,11 @@ const Assignment = require('../models/assignmentModel');
 const getAssignments = async (req, res) => {
     // Check for course filter
     const { courseName } = req.query;
-    
+
     // Apply filter if courseName is provided
     const filter = courseName ? { courseName } : {};
-    
+
+    // This query is optimized by the compound index { courseName: 1, dueDate: 1 }.
     const assignments = await Assignment.find(filter).sort({ dueDate: 1 });
 
     res.status(200).json(assignments);
@@ -17,6 +18,7 @@ const getAssignments = async (req, res) => {
 //get all unique course names
 const getCourseNames = async (req, res) => {
     try {
+        // this query is optimized by the single field index { courseName: 1 }.
         const courseNames = await Assignment.distinct('courseName');
         res.status(200).json(courseNames);
     } catch (error) {
@@ -88,7 +90,7 @@ const updateAssignment = async (req, res) => {
     const updatedAssignment = await Assignment.findByIdAndUpdate(
         id, 
         req.body, 
-        { new: true } // This tells MongoDB to return the updated document
+        { new: true }
     );
 
     if (!updatedAssignment) {

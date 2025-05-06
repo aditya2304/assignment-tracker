@@ -25,10 +25,10 @@ router.get('/:id', getAssignment);
 // POST a new assignment
 router.post('/', createAssignment);
 
-// DELETE a new assignment
+// DELETE an assignment
 router.delete('/:id', deleteAssignment);
 
-// UPDATE a new assignment
+// UPDATE an assignment
 router.patch('/:id', updateAssignment);
 
 module.exports = router;
